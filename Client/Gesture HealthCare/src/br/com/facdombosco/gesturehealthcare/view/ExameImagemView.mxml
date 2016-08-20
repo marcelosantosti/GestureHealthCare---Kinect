@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx" 
+		title="ExameImagemView" xmlns:panzoom="com.adobe.wheelerstreet.fig.panzoom.*">
+	
+	<fx:Declarations>
+		<mx:Parallel id="showEffect" >
+			<mx:Move 
+				id="contentMove" />
+			<mx:Move 
+				id="imageMove" 
+				target="{animateImage}"  />
+			<mx:effectEnd>
+				<![CDATA[
+					animateImage.visible = false;
+					animateImage.includeInLayout = false;
+				]]>
+			</mx:effectEnd>
+		</mx:Parallel>
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import br.com.facdombosco.gesturehealthcare.event.GestureEvent;
+			import br.com.facdombosco.gesturehealthcare.model.gestures.GestureType;
+			
+			import mx.graphics.ImageSnapshot;
+			
+			protected function button1_clickHandler(event:MouseEvent):void
+			{
+				animateImage.width = content.width;
+				animateImage.height = content.height;
+				animateImage.source = new Bitmap( ImageSnapshot.captureBitmapData( content ) );
+				animateImage.visible = true;
+				animateImage.includeInLayout = true;
+				
+				contentMove.xFrom = content.width;
+				contentMove.xTo = 0;
+				contentMove.yFrom = 0;
+				contentMove.yTo = 0;
+				
+				imageMove.xFrom = 0;
+				imageMove.xTo = -content.width;
+				imageMove.yFrom = 0;
+				imageMove.yTo = 0;
+				
+				this.content.selectedIndex = 0;
+				contentMove.target = this.content.selectedChild;
+			}
+			
+			protected function button2_clickHandler(event:MouseEvent) : void
+			{
+				animateImage.width = content.width;
+				animateImage.height = content.height;
+				animateImage.source = new Bitmap( ImageSnapshot.captureBitmapData( content ) );
+				animateImage.visible = true;
+				animateImage.includeInLayout = true;
+				
+				contentMove.xFrom = - content.width;
+				contentMove.xTo = 0;
+				contentMove.yFrom = 0;
+				contentMove.yTo = 0;
+				
+				imageMove.xFrom = 0;
+				imageMove.xTo = content.width;
+				imageMove.yFrom = 0;
+				imageMove.yTo = 0;
+				
+				this.content.selectedIndex = 1;
+				contentMove.target = this.content.selectedChild;
+			}
+			
+			[EventHandler(event="GestureEvent.GESTURE_RECOGNISED")]
+			public function swipeRigth(gestureEvent : br.com.facdombosco.gesturehealthcare.event.GestureEvent) : void
+			{
+				if (gestureEvent.gestureType == GestureType.SWIPE_RIGTH)
+				{
+					this.button2_clickHandler(null);
+				}
+				else
+				{
+					if (gestureEvent.gestureType == GestureType.SWIPE_LEFT)
+					{
+						this.button1_clickHandler(null);	
+					}
+				}
+			}
+			
+			[EventHandler(event="GestureEvent.GESTURE_RECOGNISED")]
+			public function gestureRecognised(gestureEvent : br.com.facdombosco.gesturehealthcare.event.GestureEvent) : void
+			{
+				if (gestureEvent.gestureType == GestureType.SPREAD)
+				{
+					if (this.content.selectedIndex == 0)
+						this.imageViewer.zoom("in");
+					else
+						this.imageViewer1.zoom("in");
+				}
+				else
+				{
+					if (gestureEvent.gestureType == GestureType.PINCH)
+					{
+						if (this.content.selectedIndex == 0)
+							this.imageViewer.zoom("out");
+						else
+							this.imageViewer1.zoom("out");
+					}
+				}
+			}
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<s:layout>
+		<s:VerticalLayout>
+			
+		</s:VerticalLayout>
+	</s:layout>
+	
+	<s:HGroup width="100%" height="10%">
+		<s:Button click="button1_clickHandler(event)" label="-" />
+		<s:Button click="button2_clickHandler(event)" label="+" />
+	</s:HGroup>
+	
+	<mx:Panel
+		horizontalScrollPolicy="off"
+		verticalScrollPolicy="off"
+		horizontalCenter="0"
+		width="100%"
+		height="100%"
+		verticalCenter="0">
+		
+		<mx:ViewStack id="content" width="100%" height="100%">
+			
+			<mx:Canvas width="100%" height="100%" showEffect="{showEffect}">
+				<!--<s:Label text="TESTE" />-->
+				<panzoom:ImageViewer id="imageViewer" imageURL="assets/CPC_DICOM_3T_9.jpg" width="100%" height="100%" x="0" y="0" bitmapScaleFactorMax="5"
+				bitmapScaleFactorMin=".05" />
+			</mx:Canvas>
+			
+			<mx:Canvas width="100%" height="100%" showEffect="{showEffect}">
+				<!--<s:Label text="TESTE 1" />-->
+				<panzoom:ImageViewer id="imageViewer1" imageURL="assets/Abdo-MRI.jpg" width="100%" height="100%" x="0" y="0" bitmapScaleFactorMax="5"
+				bitmapScaleFactorMin=".05" />
+			</mx:Canvas>
+			
+		</mx:ViewStack>
+		
+		<mx:Image 
+			id="animateImage"
+			visible="false"
+			includeInLayout="false" />
+		
+	</mx:Panel>
+	
+</s:View>

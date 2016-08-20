@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<swiz:BeanProvider xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				   xmlns:s="library://ns.adobe.com/flex/spark" 
+				   xmlns:impl="br.com.facdombosco.gesturehealthcare.model.presentation.impl.*" 
+				   xmlns:swiz="http://swiz.swizframework.org" xmlns:controller="br.com.facdombosco.gesturehealthcare.controller.*" 
+				   xmlns:gestures="br.com.facdombosco.gesturehealthcare.model.gestures.*" xmlns:components="br.com.facdombosco.gesturehealthcare.view.components.*" xmlns:imp="br.com.facdombosco.gesturehealthcare.service.imp.*">
+	
+	<impl:HomeViewPresentationModel id="homeViewPresentationModel" />
+	<impl:GestureViewerPresentationModel id="gestureViewerPresentationModel" />
+	<impl:CirurgiaPresentationModel id="cirurgiaPresentationModel" />
+	<impl:ProntuarioPresentationModel id="prontuarioPresentationModel" />
+	<impl:ExamePresentationModel id="examePresentationModel" />
+	<impl:ProcedimentoPresentationModel id="procedimentoPresentationModel" />
+	<impl:DiagnosticoPresentationModel id="diagnosticoPresentationModel" />
+	<impl:LaudoPresentationModel id="laudoPresentationModel" />
+	
+	<controller:GestureController id="gestureController" />
+	<controller:CirurgiaController id="cirurgiaController" />
+	<controller:ExameController id="exameController" />
+	<controller:ProcedimentoController id="procedimentoController" />
+	<controller:DiagnosticoController id="diagnosticoController" />
+	<controller:LaudoController id="laudoController" />
+	
+	<imp:GestureHealthCareService id="gestureHealthCareService" />
+	
+</swiz:BeanProvider>

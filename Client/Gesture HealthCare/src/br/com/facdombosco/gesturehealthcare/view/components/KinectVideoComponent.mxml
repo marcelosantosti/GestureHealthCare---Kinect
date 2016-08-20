@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:SpriteVisualElement xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 addedToStage="spritevisualelement1_addedToStageHandler(event)">
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import br.com.facdombosco.gesturehealthcare.event.KinectImageEvent;
+			
+			import mx.events.FlexEvent;
+			
+			private var _bitmap : Bitmap; 
+			
+			protected function group1_creationCompleteHandler(event:FlexEvent):void
+			{
+				
+			}
+			
+			[EventHandler(event="KinectImageEvent.IMAGE_UPDATED")]
+			public function onDepthImageUpdate(kinectImageEvent : KinectImageEvent) : void
+			{
+				this._bitmap.bitmapData = kinectImageEvent.kinectImage;
+			}
+			
+			protected function spritevisualelement1_addedToStageHandler(event:Event):void
+			{
+				this._bitmap = new Bitmap();
+				this.addChild(this._bitmap);
+			}
+			
+		]]>
+	</fx:Script>
+	
+</s:SpriteVisualElement>

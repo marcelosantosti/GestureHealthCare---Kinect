@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx" 
+		xmlns:components="br.com.facdombosco.gesturehealthcare.view.components.*"
+		creationComplete="view1_creationCompleteHandler(event)"
+		title="Gesture HealthCare">
+	
+	<fx:Script>
+		<![CDATA[
+			import br.com.facdombosco.gesturehealthcare.event.GestureEvent;
+			import br.com.facdombosco.gesturehealthcare.model.gestures.GestureType;
+			import br.com.facdombosco.gesturehealthcare.model.presentation.impl.ProntuarioPresentationModel;
+			
+			import mx.events.FlexEvent;
+			
+			import spark.events.IndexChangeEvent;
+			
+			[Inject]
+			[Bindable]
+			public var prontuarioPresentationModel : ProntuarioPresentationModel;
+			
+			[Embed("assets/minus_24.png")]
+			private var iconeMinus : Class;
+			[Embed("assets/plus_24.png")]
+			private var iconePlus : Class;
+			[Embed("assets/clipboard.png")]
+			private var iconeClipboard : Class;
+			[Embed("assets/clipboard36.png")]
+			private var iconeClipboard36 : Class;
+			[Embed("assets/lab.png")]
+			private var iconeLab : Class;
+			[Embed("assets/lab36.png")]
+			private var iconeLab36 : Class;
+			[Embed("assets/injection.png")]
+			private var iconeInjection : Class;
+			[Embed("assets/injection36.png")]
+			private var iconeInjection36 : Class;
+			
+			protected function button1_clickHandler(event:MouseEvent):void
+			{
+				var gestureEvent : br.com.facdombosco.gesturehealthcare.event.GestureEvent = new br.com.facdombosco.gesturehealthcare.event.GestureEvent(br.com.facdombosco.gesturehealthcare.event.GestureEvent.GESTURE_RECOGNISED);
+				gestureEvent.gestureType = GestureType.STRECH_LEFT;
+				this.prontuarioPresentationModel.strechLeft(gestureEvent);
+			}
+			
+			protected function button2_clickHandler(event:MouseEvent):void
+			{
+				var gestureEvent : br.com.facdombosco.gesturehealthcare.event.GestureEvent = new br.com.facdombosco.gesturehealthcare.event.GestureEvent(br.com.facdombosco.gesturehealthcare.event.GestureEvent.GESTURE_RECOGNISED);
+				gestureEvent.gestureType = GestureType.STRECH_RIGTH;
+				this.prontuarioPresentationModel.strechRigth(gestureEvent);
+			}
+			
+			protected function view1_creationCompleteHandler(event : FlexEvent) : void
+			{
+				this.prontuarioPresentationModel.viewNavigatorDetail = this.viewNavigator;	
+			}
+			
+			protected function button3_clickHandler(event:MouseEvent) : void
+			{
+				var gestureEvent : br.com.facdombosco.gesturehealthcare.event.GestureEvent = new br.com.facdombosco.gesturehealthcare.event.GestureEvent(br.com.facdombosco.gesturehealthcare.event.GestureEvent.GESTURE_RECOGNISED);
+				gestureEvent.gestureType = GestureType.RAISE_RIGTH;
+				this.prontuarioPresentationModel.raiseRigth(gestureEvent);
+			}
+			
+			private function retornarLab() : Class
+			{
+				if (Capabilities.screenResolutionY < 900)
+					return iconeLab36;
+				else
+					return iconeLab;
+			}
+			
+			private function retornarClipboard() : Class
+			{
+				if (Capabilities.screenResolutionY < 900)
+					return iconeClipboard36;
+				else
+					return iconeClipboard;
+			}
+			
+			private function retornarInjection() : Class
+			{
+				if (Capabilities.screenResolutionY < 900)
+					return iconeInjection36;
+				else
+					return iconeInjection;
+			}
+			
+			protected function btnFullScreen_clickHandler(event:MouseEvent):void
+			{
+				if (stage.displayState == StageDisplayState.NORMAL)
+					stage.displayState = StageDisplayState.FULL_SCREEN;
+				else
+				{
+					if (stage.displayState == StageDisplayState.FULL_SCREEN)
+						stage.displayState = StageDisplayState.NORMAL;
+				}
+			}
+		]]>
+	</fx:Script>
+	
+	<s:navigationContent>
+		<s:HGroup paddingLeft="10">
+			<s:Button label="Voltar" click="{this.prontuarioPresentationModel.voltar()}" />
+		</s:HGroup>
+	</s:navigationContent>
+	
+	<s:actionContent>
+		<s:HGroup gap="5">
+			<s:Button label="Imagens" click="button3_clickHandler(event)" skinClass="spark.skins.mobile.BeveledActionButtonSkin" />
+			<s:Button id="btnFullScreen" label="Fullscreen" click="btnFullScreen_clickHandler(event)" />
+			<s:Button id="btnSair" label="Sair" click="{this.prontuarioPresentationModel.sair()}" />
+		</s:HGroup>
+	</s:actionContent>
+	
+	<s:BorderContainer width="100%" height="100%" borderVisible="false">
+		
+		<s:layout>
+			<s:VerticalLayout paddingBottom="20" paddingLeft="20" paddingRight="20" paddingTop="20" />
+		</s:layout>
+		
+		<s:VGroup width="100%" height="100%">
+			
+			<s:BorderContainer width="100%">
+				
+				<s:layout>
+					<s:VerticalLayout />
+				</s:layout>
+				
+				<s:Label id="lblData" fontWeight="bold" text="Dados da Cirurgia" width="100%" height="27" color="#ffffff" backgroundColor="#467688" verticalAlign="middle" paddingLeft="10" />
+				<components:CirurgiaComponent cirurgia="{this.prontuarioPresentationModel.cirurgia}" width="100%" showBorder="false" />
+			</s:BorderContainer>
+			
+			<s:Group width="100%" height="80%">
+				
+				<s:layout>
+					<s:HorizontalLayout />
+				</s:layout>
+				
+				<s:BorderContainer width="30%" height="100%">
+					
+					<s:layout>
+						<s:VerticalLayout />
+					</s:layout>
+					
+					<s:Group width="100%">
+						
+						<s:Rect width="100%" height="100%">
+							<s:fill>
+								<s:SolidColor color="#467688" />
+							</s:fill>
+						</s:Rect>
+						
+						<s:HGroup width="100%" height="32" verticalAlign="middle" paddingRight="5">
+							<s:Label text="Informação" fontWeight="bold" color="#ffffff" verticalAlign="middle" paddingLeft="10" />
+							<s:Spacer width="100%" />
+							<s:HGroup>
+								<s:Button click="button1_clickHandler(event)" icon="{iconeMinus}" skinClass="spark.skins.mobile.BeveledActionButtonSkin" />
+								
+								<s:Button click="button2_clickHandler(event)" icon="{iconePlus}" skinClass="spark.skins.mobile.BeveledActionButtonSkin" />
+							</s:HGroup>
+						</s:HGroup>
+					</s:Group>
+					
+					<s:VGroup paddingBottom="20" paddingLeft="20" paddingRight="20" paddingTop="20" width="100%" height="100%">
+						<s:BorderContainer width="100%" height="34%" click="{this.prontuarioPresentationModel.verExamesView(this.viewNavigator)}">
+							
+							<s:layout>
+								<s:VerticalLayout />
+							</s:layout>
+							
+							<s:Group width="100%">
+								
+								<s:Rect width="100%" height="100%">
+									<s:fill>
+										<s:SolidColor color="#467688" />
+									</s:fill>
+								</s:Rect>
+								
+								<s:HGroup width="100%" height="32" verticalAlign="middle" paddingRight="5">
+									<s:Label text="Exames" fontWeight="bold" color="#ffffff" verticalAlign="middle" paddingLeft="10" />
+								</s:HGroup>
+							</s:Group>
+							
+							<s:VGroup width="100%" height="100%" verticalAlign="middle" horizontalAlign="center">
+								<s:Image source="{this.retornarLab()}" />
+							</s:VGroup>
+							
+						</s:BorderContainer>
+						
+						<s:BorderContainer width="100%" height="34%" click="{this.prontuarioPresentationModel.verProcedimentos(this.viewNavigator)}">
+							
+							<s:layout>
+								<s:VerticalLayout />
+							</s:layout>
+							
+							<s:Group width="100%">
+								
+								<s:Rect width="100%" height="100%">
+									<s:fill>
+										<s:SolidColor color="#467688" />
+									</s:fill>
+								</s:Rect>
+								
+								<s:HGroup width="100%" height="32" verticalAlign="middle" paddingRight="5">
+									<s:Label text="Procedimentos" fontWeight="bold" color="#ffffff" verticalAlign="middle" paddingLeft="10" />
+								</s:HGroup>
+							</s:Group>
+							
+							<s:VGroup width="100%" height="100%" verticalAlign="middle" horizontalAlign="center">
+								<s:Image source="{this.retornarInjection()}" />
+							</s:VGroup>
+							
+						</s:BorderContainer>
+						
+						<s:BorderContainer width="100%" height="34%">
+							
+							<s:layout>
+								<s:VerticalLayout />
+							</s:layout>
+							
+							<s:Group width="100%">
+								
+								<s:Rect width="100%" height="100%">
+									<s:fill>
+										<s:SolidColor color="#467688" />
+									</s:fill>
+								</s:Rect>
+								
+								<s:HGroup width="100%" height="32" verticalAlign="middle" paddingRight="5">
+									<s:Label text="Diagnósticos" fontWeight="bold" color="#ffffff" verticalAlign="middle" paddingLeft="10" />
+								</s:HGroup>
+							</s:Group>
+							
+							<s:VGroup width="100%" height="100%" verticalAlign="middle" horizontalAlign="center">
+								<s:Image source="{this.retornarClipboard()}" />
+							</s:VGroup>
+							
+						</s:BorderContainer>	
+					</s:VGroup>
+					
+				</s:BorderContainer>
+				
+				<s:Group width="100%" height="100%">
+					<s:ViewNavigator id="viewNavigator" width="100%" height="100%" firstView="br.com.facdombosco.gesturehealthcare.view.ExameView">
+						
+					</s:ViewNavigator>
+				</s:Group>
+				
+			</s:Group>
+			
+			<s:HGroup width="100%" height="20%">
+				<components:GestureViewerComponent width="100%" height="100%" />
+			</s:HGroup>
+			
+		</s:VGroup>
+	</s:BorderContainer>
+	
+</s:View>

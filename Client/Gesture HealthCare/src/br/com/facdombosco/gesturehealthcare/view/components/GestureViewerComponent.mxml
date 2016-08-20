@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx">
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import br.com.facdombosco.gesturehealthcare.model.presentation.impl.GestureViewerPresentationModel;
+			
+			[Inject(source="gestureViewerPresentationModel")]
+			[Bindable]
+			public var gestureViewerPresentationModel : GestureViewerPresentationModel;
+		]]>
+	</fx:Script>
+	
+	<s:layout>
+		<s:VerticalLayout>
+			
+		</s:VerticalLayout>
+	</s:layout>
+	
+	<s:BorderContainer width="100%" height="100%">
+		
+		<s:layout>
+			<s:VerticalLayout>
+				
+			</s:VerticalLayout>
+		</s:layout>
+		
+		<s:Group width="100%">
+			
+			<s:Rect width="100%" height="100%">
+				<s:fill>
+					<s:SolidColor color="#467688" />
+				</s:fill>
+			</s:Rect>
+			
+			<s:HGroup width="100%" height="32" verticalAlign="middle" paddingRight="5">
+				<s:Label text="Gesto Realizado" fontWeight="bold" color="#ffffff" verticalAlign="middle" paddingLeft="10" />
+			</s:HGroup>
+		</s:Group>
+		
+		<s:HGroup width="100%" height="100%" verticalAlign="middle" horizontalAlign="center">
+			<s:Label text="{this.gestureViewerPresentationModel.gesture}" fontSize="25" />
+		</s:HGroup>
+	</s:BorderContainer>
+	
+</s:Group>

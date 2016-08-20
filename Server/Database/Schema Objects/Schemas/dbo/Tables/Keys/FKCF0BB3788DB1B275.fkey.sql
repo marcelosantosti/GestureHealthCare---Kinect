@@ -1,0 +1,3 @@
+﻿ALTER TABLE [dbo].[SolicitacaoExame]
+    ADD CONSTRAINT [FKCF0BB3788DB1B275] FOREIGN KEY ([Atendimento]) REFERENCES [dbo].[Atendimento] ([Codigo]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+

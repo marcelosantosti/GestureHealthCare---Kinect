@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx">
+	
+	<fx:Script>
+		<![CDATA[
+			import br.com.facdombosco.gesturehealthcare.model.util.DateUtil;
+			import br.com.facdombosco.gesturehealthcare.model.vo.Cirurgia;
+			
+			[Bindable]
+			public var cirurgia : br.com.facdombosco.gesturehealthcare.model.vo.Cirurgia;
+			
+			[Bindable]
+			public var showBorder : Boolean = true;
+			
+			[Bindable]
+			public var backgroundColor : uint = 0xFFFFFF;
+			
+			private function retornarTamanhoLetraGrande() : int
+			{
+				return (Capabilities.screenResolutionY < 900) ? 20 : 40;
+			}
+			
+			private function retornarTamanhoLetraPequena() : int
+			{
+				return (Capabilities.screenResolutionY < 900) ? 12 : 20;
+			}
+		]]>
+	</fx:Script>
+	
+	<!--<s:layout>
+		<s:HorizontalLayout paddingBottom="20" paddingLeft="20" paddingRight="20" paddingTop="20" />
+	</s:layout>-->
+	
+	<s:BorderContainer id="border" width="100%" height="100%" borderVisible="{this.showBorder}" backgroundColor="{this.backgroundColor}">
+		
+		<s:layout>
+			<s:HorizontalLayout paddingBottom="10" paddingTop="10" />
+		</s:layout>
+		
+		<s:VGroup width="20%" height="100%" verticalAlign="middle" horizontalAlign="center">
+			<s:Image source="@Embed('assets/userAnonymous.png')" />
+		</s:VGroup>
+		
+		<s:Group width="40%" height="100%">
+			
+			<s:layout>
+				<s:VerticalLayout paddingBottom="10" paddingTop="10" />
+			</s:layout>
+			
+			<s:Label id="lblPaciente" fontSize="{retornarTamanhoLetraGrande()}" text="{cirurgia._Atendimento._Paciente.Nome}" />
+			
+			<s:Group>
+				
+				<s:layout>
+					<s:HorizontalLayout />
+				</s:layout>
+				
+				<s:Label text="{'Data de Nascimento: ' + DateUtil.format(cirurgia._Atendimento._Paciente.DataNascimento, 'DD/MM/YYYY')}" fontSize="{this.retornarTamanhoLetraPequena()}" />
+				
+				<s:Spacer width="100%" />
+				
+				<s:Label text="Sexo: " fontSize="{this.retornarTamanhoLetraPequena()}" />
+				<s:Label text="{'Sexo: ' + (cirurgia._Atendimento._Paciente.Sexo) == 'M' ? 'Masculino' : 'Feminino'}" fontSize="{this.retornarTamanhoLetraPequena()}" />
+			</s:Group>
+			
+			<s:Group>
+				
+				<s:layout>
+					<s:HorizontalLayout  />
+				</s:layout>
+				
+				<s:Label text="{'Idade Atual: ' + cirurgia._Atendimento._Paciente.IdadeAtual}" fontSize="{this.retornarTamanhoLetraPequena()}" />
+				
+				<s:Spacer width="100%" />
+				
+				<s:Label text="{'Médico: ' + cirurgia._Medico.Nome}" fontSize="{this.retornarTamanhoLetraPequena()}" />
+			</s:Group>
+		</s:Group>
+		
+		<s:Group width="40%" height="100%">
+			
+			<s:layout>
+				<s:VerticalLayout  paddingBottom="10" paddingTop="10" />
+			</s:layout>
+			
+			<s:Label id="lblProcedimento" fontSize="{this.retornarTamanhoLetraGrande()}" text="{cirurgia._Procedimento.Descricao}" />
+			
+			<s:Group>
+				
+				<s:layout>
+					<s:HorizontalLayout />
+				</s:layout>
+				
+				<s:Label text="{'Membro: ' + cirurgia.Membro}" fontSize="{this.retornarTamanhoLetraPequena()}" color="#FF0000" />
+				
+				<s:Spacer width="100%" />
+				
+				<s:Label text="Lado: " color="#FF0000" fontSize="{this.retornarTamanhoLetraPequena()}" />
+				<s:Label text="{'Lado: ' + (cirurgia.Lado) == 'D' ? 'Direito' : 'Esquerdo'}" color="#FF0000" fontSize="{this.retornarTamanhoLetraPequena()}" />
+			</s:Group>
+			
+			<s:Label text="{'Data Agendada: ' + DateUtil.format(cirurgia.DataAgendamento, 'DD/MM/YYYY')}" fontSize="{this.retornarTamanhoLetraPequena()}" />
+		</s:Group>
+	</s:BorderContainer>
+	
+</s:Group>

@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 xmlns:panzoom="com.adobe.wheelerstreet.fig.panzoom.*">
+	
+	<fx:Declarations>
+		<mx:Parallel id="showEffect" >
+			<mx:Move 
+				id="contentMove" />
+			<mx:Move 
+				id="imageMove" 
+				target="{animateImage}"  />
+			<mx:effectEnd>
+				<![CDATA[
+					animateImage.visible = false;
+					animateImage.includeInLayout = false;
+				]]>
+			</mx:effectEnd>
+		</mx:Parallel>
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import br.com.facdombosco.gesturehealthcare.event.GestureEvent;
+			import br.com.facdombosco.gesturehealthcare.event.KinectUserEvent;
+			import br.com.facdombosco.gesturehealthcare.event.LaudoEvent;
+			import br.com.facdombosco.gesturehealthcare.model.gestures.GestureType;
+			import br.com.facdombosco.gesturehealthcare.model.presentation.impl.LaudoPresentationModel;
+			import br.com.facdombosco.gesturehealthcare.model.vo.Laudo;
+			
+			import com.adobe.wheelerstreet.fig.panzoom.ImageViewer;
+			import com.as3nui.nativeExtensions.air.kinect.data.User;
+			
+			import mx.containers.Box;
+			import mx.containers.Canvas;
+			import mx.containers.Panel;
+			import mx.containers.ViewStack;
+			import mx.controls.Image;
+			import mx.effects.AnimateProperty;
+			import mx.graphics.ImageSnapshot;
+			
+			import spark.components.Panel;
+			import spark.effects.Scale;
+			
+			[Inject]
+			public var laudoPresentationModel : LaudoPresentationModel;
+			
+			[Bindable]
+			private var animateImage : Image;
+			private var viewStack : ViewStack;
+			
+			[Embed("assets/minus_24.png")]
+			private var iconeMinus : Class;
+			[Embed("assets/plus_24.png")]
+			private var iconePlus : Class;
+			[Embed("assets/zoomin.png")]
+			private var iconeZoomIn : Class;
+			[Embed("assets/zoomout.png")]
+			private var iconeZoomOut : Class;
+			[Embed("assets/arrowup.png")]
+			private var iconeArrowUp : Class;
+			[Embed("assets/arrowdown.png")]
+			private var iconeArrowDown : Class;
+			[Embed("assets/arrowleft.png")]
+			private var iconeArrowLeft : Class;
+			[Embed("assets/arrowrigth.png")]
+			private var iconeArrowRigth : Class;
+			
+			[EventHandler(event="LaudoEvent.RETORNAR_LAUDOS")]
+			public function retornarLaudos(laudoEvent : LaudoEvent) : void
+			{
+				var panel : Box = new Box();
+				panel.percentHeight = 100;
+				panel.percentWidth = 100;
+				panel.horizontalScrollPolicy = "off";
+				panel.verticalScrollPolicy = "off";
+				panel.verticalCenter = 0;
+				panel.horizontalCenter = 0;
+				
+				viewStack = new ViewStack();
+				viewStack.percentHeight = 100;
+				viewStack.percentWidth = 100;
+				
+				for (var i : int = 0; i < laudoEvent.laudo.length; i++)
+				{
+					var laudoAtual : Laudo = laudoEvent.laudo.getItemAt(i) as Laudo;
+					
+					var canvas : Canvas = new Canvas();
+					canvas.setStyle("showEffect", showEffect);
+					canvas.id = "group" + i.toString();
+					canvas.percentHeight = 100;
+					canvas.percentWidth = 100;
+					
+					var imageViewer : ImageViewer = new ImageViewer();
+					imageViewer.id = "imageViewer" + i.toString();
+					imageViewer.percentHeight = 100;
+					imageViewer.percentWidth = 100;
+					imageViewer.imageURL = laudoAtual.Arquivo;
+					imageViewer.x = 0;
+					imageViewer.y = 0;
+					imageViewer.bitmapScaleFactorMax = 5;
+					imageViewer.bitmapScaleFactorMin = 0.05; 
+					
+					canvas.addChild(imageViewer);
+					
+					viewStack.addElement(canvas);
+				}
+				
+				panel.addElement(viewStack);
+				
+				animateImage = new Image();
+				animateImage.visible = false;
+				animateImage.includeInLayout = false;
+				
+				panel.addElement(animateImage);
+				this.borderContainer.addElement(panel);
+			}
+			
+			[EventHandler(event="GestureEvent.GESTURE_RECOGNISED")]
+			public function swipe(gestureEvent : br.com.facdombosco.gesturehealthcare.event.GestureEvent) : void
+			{
+				if (gestureEvent.gestureType == GestureType.SWIPE_RIGTH)
+				{
+					var length : int = this.viewStack.getChildren().length;
+					
+					if (this.viewStack.selectedIndex < length - 1)
+					{
+						animateImage.width = viewStack.width;
+						animateImage.height = viewStack.height;
+						animateImage.source = new Bitmap( ImageSnapshot.captureBitmapData( viewStack ) );
+						animateImage.visible = true;
+						animateImage.includeInLayout = true;
+						
+						contentMove.xFrom = - viewStack.width;
+						contentMove.xTo = 0;
+						contentMove.yFrom = 0;
+						contentMove.yTo = 0;
+						
+						imageMove.xFrom = 0;
+						imageMove.xTo = viewStack.width;
+						imageMove.yFrom = 0;
+						imageMove.yTo = 0;
+						
+						this.viewStack.selectedIndex = this.viewStack.selectedIndex + 1;
+						contentMove.target = this.viewStack.selectedChild;	
+					}
+				}
+				else
+				{
+					if (gestureEvent.gestureType == GestureType.SWIPE_LEFT)
+					{
+						if (this.viewStack.selectedIndex > 0)
+						{
+							animateImage.width = viewStack.width;
+							animateImage.height = viewStack.height;
+							animateImage.source = new Bitmap( ImageSnapshot.captureBitmapData( viewStack ) );
+							animateImage.visible = true;
+							animateImage.includeInLayout = true;
+							
+							contentMove.xFrom = viewStack.width;
+							contentMove.xTo = 0;
+							contentMove.yFrom = 0;
+							contentMove.yTo = 0;
+							
+							imageMove.xFrom = 0;
+							imageMove.xTo = -viewStack.width;
+							imageMove.yFrom = 0;
+							imageMove.yTo = 0;
+							
+							this.viewStack.selectedIndex = this.viewStack.selectedIndex - 1;
+							contentMove.target = this.viewStack.selectedChild;	
+						}
+					}
+				}
+			}
+			
+			[EventHandler(event="GestureEvent.GESTURE_RECOGNISED")]
+			public function gestureRecognised(gestureEvent : br.com.facdombosco.gesturehealthcare.event.GestureEvent) : void
+			{
+				var index : int = this.viewStack.selectedIndex;
+				var imageViewer : ImageViewer = ((this.viewStack.selectedChild as Canvas).getElementAt(0) as ImageViewer);
+				
+				if (gestureEvent.gestureType == GestureType.SPREAD)
+				{
+					imageViewer.zoom("in");
+				}
+				else
+				{
+					if (gestureEvent.gestureType == GestureType.PINCH)
+					{
+						imageViewer.zoom("out");
+					}
+				}
+			}
+			
+			[EventHandler(event="KinectUserEvent.USER_UPDATED")]
+			public function userUpdated(kinectUserEvent : KinectUserEvent) : void
+			{
+				var user : User = kinectUserEvent.user;
+				
+				if (user.leftHand.positionRelative.y > user.leftShoulder.positionRelative.y
+					&& user.rightHand.positionRelative.z < user.head.positionRelative.z - 0.40)
+				{
+					var imageViewer : ImageViewer = ((this.viewStack.selectedChild as Canvas).getElementAt(0) as ImageViewer);
+					
+					if (Capabilities.screenResolutionY < 900)
+					{
+						imageViewer._contentRectangle.x = imageViewer._contentRectangle.x + user.rightHand.positionRelative.x * 50;
+						
+						if (user.rightHand.positionRelative.y > user.rightShoulder.positionRelative.y)
+							imageViewer._contentRectangle.y = imageViewer._contentRectangle.y - user.rightHand.positionRelative.y * 5;
+						else
+							imageViewer._contentRectangle.y = imageViewer._contentRectangle.y + user.rightHand.positionRelative.y * 5;	
+					}
+					else
+					{
+						imageViewer._contentRectangle.x = imageViewer._contentRectangle.x + user.rightHand.positionRelative.x * 100;
+						
+						if (user.rightHand.positionRelative.y > user.rightShoulder.positionRelative.y)
+							imageViewer._contentRectangle.y = imageViewer._contentRectangle.y - user.rightHand.positionRelative.y * 10;
+						else
+							imageViewer._contentRectangle.y = imageViewer._contentRectangle.y + user.rightHand.positionRelative.y * 10;	
+					}
+					 
+					imageViewer.invalidateDisplayList();
+				}
+			}
+			
+			protected function button1_clickHandler(event:MouseEvent):void
+			{
+				var gestureEvent : br.com.facdombosco.gesturehealthcare.event.GestureEvent = new br.com.facdombosco.gesturehealthcare.event.GestureEvent(br.com.facdombosco.gesturehealthcare.event.GestureEvent.GESTURE_RECOGNISED);
+				gestureEvent.gestureType = GestureType.SWIPE_LEFT;
+				this.swipe(gestureEvent);
+			}
+			
+			protected function button2_clickHandler(event:MouseEvent):void
+			{
+				var gestureEvent : br.com.facdombosco.gesturehealthcare.event.GestureEvent = new br.com.facdombosco.gesturehealthcare.event.GestureEvent(br.com.facdombosco.gesturehealthcare.event.GestureEvent.GESTURE_RECOGNISED);
+				gestureEvent.gestureType = GestureType.SWIPE_RIGTH;
+				this.swipe(gestureEvent);
+			}
+			
+			protected function button3_clickHandler(event:MouseEvent):void
+			{
+				var gestureEvent : br.com.facdombosco.gesturehealthcare.event.GestureEvent = new br.com.facdombosco.gesturehealthcare.event.GestureEvent(br.com.facdombosco.gesturehealthcare.event.GestureEvent.GESTURE_RECOGNISED);
+				gestureEvent.gestureType = GestureType.PINCH;
+				this.gestureRecognised(gestureEvent);
+			}
+			
+			protected function button4_clickHandler(event:MouseEvent):void
+			{
+				var gestureEvent : br.com.facdombosco.gesturehealthcare.event.GestureEvent = new br.com.facdombosco.gesturehealthcare.event.GestureEvent(br.com.facdombosco.gesturehealthcare.event.GestureEvent.GESTURE_RECOGNISED);
+				gestureEvent.gestureType = GestureType.SPREAD;
+				this.gestureRecognised(gestureEvent);
+			}
+			
+			protected function button5_clickHandler(event:MouseEvent):void
+			{
+				/* var kinectUserEvent : KinectUserEvent = new KinectUserEvent(KinectUserEvent.USER_UPDATED);
+				this.userUpdated(kinectUserEvent); */
+				
+				var imageViewer : ImageViewer = ((this.viewStack.selectedChild as Canvas).getElementAt(0) as ImageViewer);
+				
+				var _animatePropertyX:AnimateProperty;
+				
+				_animatePropertyX = new AnimateProperty(imageViewer._contentRectangle);	
+				_animatePropertyX.property = "x";
+				_animatePropertyX.toValue = imageViewer._contentRectangle.x - 50;
+				imageViewer.invalidateDisplayList();
+				_animatePropertyX.play();
+			}
+			
+			protected function button6_clickHandler(event:MouseEvent):void
+			{
+				var imageViewer : ImageViewer = ((this.viewStack.selectedChild as Canvas).getElementAt(0) as ImageViewer);
+				
+				var _animatePropertyX:AnimateProperty;
+				
+				_animatePropertyX = new AnimateProperty(imageViewer._contentRectangle);	
+				_animatePropertyX.property = "x";
+				_animatePropertyX.toValue = imageViewer._contentRectangle.x + 50;
+				imageViewer.invalidateDisplayList();
+				_animatePropertyX.play();
+			}
+			
+			protected function button7_clickHandler(event:MouseEvent):void
+			{
+				var imageViewer : ImageViewer = ((this.viewStack.selectedChild as Canvas).getElementAt(0) as ImageViewer);
+				
+				var _animatePropertyX:AnimateProperty;
+				
+				_animatePropertyX = new AnimateProperty(imageViewer._contentRectangle);	
+				_animatePropertyX.property = "y";
+				_animatePropertyX.toValue = imageViewer._contentRectangle.y - 50;
+				imageViewer.invalidateDisplayList();
+				_animatePropertyX.play();
+			}
+			
+			protected function button8_clickHandler(event:MouseEvent):void
+			{
+				var imageViewer : ImageViewer = ((this.viewStack.selectedChild as Canvas).getElementAt(0) as ImageViewer);
+				
+				var _animatePropertyX:AnimateProperty;
+				
+				_animatePropertyX = new AnimateProperty(imageViewer._contentRectangle);	
+				_animatePropertyX.property = "y";
+				_animatePropertyX.toValue = imageViewer._contentRectangle.y + 50;
+				imageViewer.invalidateDisplayList();
+				_animatePropertyX.play();
+			}
+		]]>
+	</fx:Script>
+	
+	<s:layout>
+		<s:VerticalLayout />
+	</s:layout>
+	
+	<s:BorderContainer id="borderContainer" width="100%" height="100%">
+		<s:layout>
+			<s:VerticalLayout />
+		</s:layout>
+		
+		<s:Group width="100%">
+			
+			<s:Rect width="100%" height="100%">
+				<s:fill>
+					<s:SolidColor color="#467688" />
+				</s:fill>
+			</s:Rect>
+			
+			<s:HGroup width="100%" height="32" verticalAlign="middle" paddingRight="5">
+				<s:Label text="Exames De Imagem" fontWeight="bold" color="#ffffff" verticalAlign="middle" paddingLeft="10" />
+				<s:Spacer width="100%" />
+				<s:HGroup>
+					<s:HGroup>
+						<s:Button click="button1_clickHandler(event)" icon="{iconeMinus}" skinClass="spark.skins.mobile.BeveledActionButtonSkin" />
+						<s:Button click="button2_clickHandler(event)" icon="{iconePlus}" skinClass="spark.skins.mobile.BeveledActionButtonSkin" />
+						
+						<s:Button click="button3_clickHandler(event)" icon="{iconeZoomOut}" skinClass="spark.skins.mobile.BeveledActionButtonSkin" />
+						<s:Button click="button4_clickHandler(event)" icon="{iconeZoomIn}" skinClass="spark.skins.mobile.BeveledActionButtonSkin" />
+						
+						<s:Button click="button5_clickHandler(event)" icon="{iconeArrowLeft}" skinClass="spark.skins.mobile.BeveledActionButtonSkin" />
+						<s:Button click="button6_clickHandler(event)" icon="{iconeArrowRigth}" skinClass="spark.skins.mobile.BeveledActionButtonSkin" />
+						<s:Button click="button7_clickHandler(event)" icon="{iconeArrowUp}" skinClass="spark.skins.mobile.BeveledActionButtonSkin" />
+						<s:Button click="button8_clickHandler(event)" icon="{iconeArrowDown}" skinClass="spark.skins.mobile.BeveledActionButtonSkin" />
+					</s:HGroup>
+				</s:HGroup>
+			</s:HGroup>
+		</s:Group>
+	</s:BorderContainer>
+	
+</s:Group>

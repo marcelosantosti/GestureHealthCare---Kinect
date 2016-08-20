@@ -1,0 +1,3 @@
+﻿ALTER TABLE [dbo].[Cirurgia]
+    ADD CONSTRAINT [FK4BD7B8F28DB1B275] FOREIGN KEY ([Atendimento]) REFERENCES [dbo].[Atendimento] ([Codigo]) ON DELETE NO ACTION ON UPDATE NO ACTION;
+

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<swiz:Swiz xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		   xmlns:s="library://ns.adobe.com/flex/spark" 
+		   xmlns:views="views.*"
+		   xmlns:swiz="http://swiz.swizframework.org" 
+		   xmlns:config="br.com.facdombosco.gesturehealthcare.config.*">
+	
+	<swiz:beanProviders>
+		<config:BeanProvider />
+	</swiz:beanProviders>
+	
+	<swiz:config>			
+		<swiz:SwizConfig 
+			eventPackages="br.com.facdombosco.gesturehealthcare.event" 
+			viewPackages="br.com.facdombosco.gesturehealthcare.view.*" />
+	</swiz:config>
+	
+</swiz:Swiz>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx"
+		actionBarVisible="false"
+		creationComplete="view1_creationCompleteHandler(event)">
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import br.com.facdombosco.gesturehealthcare.event.GestureEvent;
+			import br.com.facdombosco.gesturehealthcare.model.gestures.GestureType;
+			import br.com.facdombosco.gesturehealthcare.model.presentation.impl.ExamePresentationModel;
+			
+			import mx.effects.AnimateProperty;
+			import mx.events.FlexEvent;
+			
+			import spark.components.DataGroup;
+			
+			[Inject]
+			[Bindable]
+			public var examePresentationModel : ExamePresentationModel;
+			
+			[Bindable]
+			private var counter : int = 0;
+			
+			[Embed("assets/minus_24.png")]
+			private var iconeMinus : Class;
+			[Embed("assets/plus_24.png")]
+			private var iconePlus : Class;
+			
+			protected function button1_clickHandler(event:MouseEvent):void
+			{
+				var gestureEvent : br.com.facdombosco.gesturehealthcare.event.GestureEvent = new br.com.facdombosco.gesturehealthcare.event.GestureEvent(br.com.facdombosco.gesturehealthcare.event.GestureEvent.GESTURE_RECOGNISED);
+				gestureEvent.gestureType = GestureType.SWIPE_LEFT;
+				this.examePresentationModel.swipeLeft(gestureEvent);
+			}
+			
+			protected function button2_clickHandler(event : MouseEvent) : void
+			{
+				var gestureEvent : br.com.facdombosco.gesturehealthcare.event.GestureEvent = new br.com.facdombosco.gesturehealthcare.event.GestureEvent(br.com.facdombosco.gesturehealthcare.event.GestureEvent.GESTURE_RECOGNISED);
+				gestureEvent.gestureType = GestureType.SWIPE_RIGTH;
+				this.examePresentationModel.swipeRigth(gestureEvent);
+				
+				//var columnWidth : int = (listExame.layout as TileLayout).columnWidth;
+				//this.listExame.scroller.viewport.horizontalScrollPosition = this.listExame.scroller.viewport.horizontalScrollPosition + columnWidth;
+				
+				/* while (this.listExame.scroller.viewport.horizontalScrollPosition < this.listExame.scroller.viewport.horizontalScrollPosition + columnWidth)
+				this.listExame.scroller.viewport.horizontalScrollPosition = this.listExame.scroller.viewport.horizontalScrollPosition + 1;  */
+				
+				/* listExame.selectedIndex = listExame.selectedIndex + 1;
+				listExame.ensureIndexIsVisible(listExame.selectedIndex); */
+			}
+			
+			protected function view1_creationCompleteHandler(event:FlexEvent):void
+			{
+				this.examePresentationModel.list = this.listExame;
+				//this.listExame.selectedIndex = 0;
+			}
+		]]>
+	</fx:Script>
+	
+	<s:layout>
+		<s:VerticalLayout />
+	</s:layout>
+	
+	<s:BorderContainer width="100%" height="100%">
+		
+		<s:layout>
+			<s:VerticalLayout />
+		</s:layout>
+		
+		<s:Group width="100%">
+			
+			<s:Rect width="100%" height="100%">
+				<s:fill>
+					<s:SolidColor color="#467688" />
+				</s:fill>
+			</s:Rect>
+			
+			<s:HGroup width="100%" height="32" verticalAlign="middle" paddingRight="5">
+				<s:Label text="Exames" fontWeight="bold" color="#ffffff" verticalAlign="middle" paddingLeft="10" />
+				<s:Spacer width="100%" />
+				<s:HGroup>
+					<s:Button click="button1_clickHandler(event)" icon="{iconeMinus}" skinClass="spark.skins.mobile.BeveledActionButtonSkin" />
+					
+					<s:Button click="button2_clickHandler(event)" icon="{iconePlus}" skinClass="spark.skins.mobile.BeveledActionButtonSkin" />
+				</s:HGroup>
+			</s:HGroup>
+		</s:Group>
+		
+		<s:List id="listExame" itemRenderer="br.com.facdombosco.gesturehealthcare.view.itemrenderers.ExameItemRenderer" 
+				dataProvider="{this.examePresentationModel.atendimentoArrayCollection}"
+				verticalScrollPolicy="off" 
+				horizontalScrollPolicy="on"
+				pageScrollingEnabled="true"
+				skinClass="br.com.facdombosco.gesturehealthcare.view.skins.PagedListSkin"
+				width="100%"
+				height="100%">
+			<s:layout>
+				<s:TileLayout orientation="rows" requestedRowCount="1"
+							  columnWidth="{listExame.width}" rowHeight="{listExame.height}" 
+							  verticalGap="0" horizontalGap="0"/>
+			</s:layout>
+		</s:List>
+		
+	</s:BorderContainer>
+	
+</s:View>

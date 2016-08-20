@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfGestureHealthCare", "WcfGestureHealthCare.csproj", "{2D1832B7-02FF-4F26-970D-DA9A0099D9F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestureHealthCare", "..\GestureHealthCare\GestureHealthCare.csproj", "{6E77E24A-5D8E-40D7-AE89-BA955BC64256}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestureHealthCareWcfLibrary", "..\GestureHealthCareWcfLibrary\GestureHealthCareWcfLibrary.csproj", "{53BB9596-D845-46FA-9647-182B74141027}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2D1832B7-02FF-4F26-970D-DA9A0099D9F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D1832B7-02FF-4F26-970D-DA9A0099D9F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D1832B7-02FF-4F26-970D-DA9A0099D9F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D1832B7-02FF-4F26-970D-DA9A0099D9F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E77E24A-5D8E-40D7-AE89-BA955BC64256}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E77E24A-5D8E-40D7-AE89-BA955BC64256}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E77E24A-5D8E-40D7-AE89-BA955BC64256}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E77E24A-5D8E-40D7-AE89-BA955BC64256}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53BB9596-D845-46FA-9647-182B74141027}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53BB9596-D845-46FA-9647-182B74141027}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53BB9596-D845-46FA-9647-182B74141027}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53BB9596-D845-46FA-9647-182B74141027}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,527 @@
+
+<model xmlns="http://ns.adobe.com/Fiber/1.0">
+  <annotation name="ActionScriptGeneration">
+    <item name="FullyQualifyReferences">true</item>
+  </annotation>
+  <service name="GestureHealthCareService">
+    <annotation name="ActionScriptGeneration">
+      <item name="WSDL-service">GestureHealthCareService</item>
+      <item name="ServiceType">WebService</item>
+      <item name="WSDL">http://localhost:2985/GestureHealthCareService.svc?wsdl</item>
+      <item name="Package">br.com.facdombosco.gesturehealthcare.service.imp</item>
+      <item name="WSDL-port">BasicHttpBinding_IGestureHealthCareService</item>
+    </annotation>
+    <annotation name="ServiceTypeGroup">
+      <item name="ServiceBackendType">WebService</item>
+    </annotation>
+    <annotation name="WSDLCollectionElementTypes">
+      <item name="http://schemas.datacontract.org/2004/07/Facdombosco.GestureHealthCareWcfLibrary.DataContract,ArrayOfPaciente">Paciente::http://schemas.datacontract.org/2004/07/Facdombosco.GestureHealthCareWcfLibrary.DataContract,Paciente</item>
+      <item name="http://schemas.datacontract.org/2004/07/Facdombosco.GestureHealthCareWcfLibrary.DataContract,ArrayOfCirurgia">Cirurgia::http://schemas.datacontract.org/2004/07/Facdombosco.GestureHealthCareWcfLibrary.DataContract,Cirurgia</item>
+      <item name="http://schemas.datacontract.org/2004/07/Facdombosco.GestureHealthCareWcfLibrary.DataContract,ArrayOfAtendimento">Atendimento::http://schemas.datacontract.org/2004/07/Facdombosco.GestureHealthCareWcfLibrary.DataContract,Atendimento</item>
+      <item name="http://schemas.datacontract.org/2004/07/Facdombosco.GestureHealthCareWcfLibrary.DataContract,ArrayOfSolicitacaoExameItem">SolicitacaoExameItem::http://schemas.datacontract.org/2004/07/Facdombosco.GestureHealthCareWcfLibrary.DataContract,SolicitacaoExameItem</item>
+      <item name="http://schemas.datacontract.org/2004/07/Facdombosco.GestureHealthCareWcfLibrary.DataContract,ArrayOfSolicitacaoExame">SolicitacaoExame::http://schemas.datacontract.org/2004/07/Facdombosco.GestureHealthCareWcfLibrary.DataContract,SolicitacaoExame</item>
+      <item name="http://schemas.datacontract.org/2004/07/Facdombosco.GestureHealthCareWcfLibrary.DataContract,ArrayOfSolicitacaoProcedimentoItem">SolicitacaoProcedimentoItem::http://schemas.datacontract.org/2004/07/Facdombosco.GestureHealthCareWcfLibrary.DataContract,SolicitacaoProcedimentoItem</item>
+      <item name="http://schemas.datacontract.org/2004/07/Facdombosco.GestureHealthCareWcfLibrary.DataContract,ArrayOfSolicitacaoProcedimento">SolicitacaoProcedimento::http://schemas.datacontract.org/2004/07/Facdombosco.GestureHealthCareWcfLibrary.DataContract,SolicitacaoProcedimento</item>
+      <item name="http://schemas.datacontract.org/2004/07/Facdombosco.GestureHealthCareWcfLibrary.DataContract,ArrayOfLaudo">Laudo::http://schemas.datacontract.org/2004/07/Facdombosco.GestureHealthCareWcfLibrary.DataContract,Laudo</item>
+    </annotation>
+    <annotation name="ServiceConfig">
+      <item name="DEFAULT_ENTITY_PACKAGE">br.com.facdombosco.gesturehealthcare.model.vo</item>
+      <item name="WSDL-endpoint">http://localhost:2985/GestureHealthCareService.svc</item>
+      <item name="LINKED_FILE"></item>
+    </annotation>
+    <function name="FindAllLaudo" return-type="Laudo[]">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="FindAllLaudo">http://tempuri.org/,FindAllLaudo</item>
+        <item name="SOAPAction">http://tempuri.org/IGestureHealthCareService/FindAllLaudo</item>
+      </annotation>
+      <annotation name="ValidProperties">
+        <item name="propertySpecifier">Arquivo,Codigo,_SolicitacaoExameItem</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">integer</item>
+        <item name="returnType">Laudo</item>
+      </annotation>
+      <parameter name="idPaciente" type="integer"/>
+    </function>
+    <function name="FindAllAtendimentoWithProcedimento" return-type="Atendimento[]">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="SOAPAction">http://tempuri.org/IGestureHealthCareService/FindAllAtendimentoWithProcedimento</item>
+        <item name="FindAllAtendimentoWithProcedimento">http://tempuri.org/,FindAllAtendimentoWithProcedimento</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">integer</item>
+        <item name="returnType">Atendimento</item>
+      </annotation>
+      <parameter name="idPaciente" type="integer"/>
+    </function>
+    <function name="FindAllAtendimentoWithDiagnostico" return-type="Atendimento[]">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="SOAPAction">http://tempuri.org/IGestureHealthCareService/FindAllAtendimentoWithDiagnostico</item>
+        <item name="FindAllAtendimentoWithDiagnostico">http://tempuri.org/,FindAllAtendimentoWithDiagnostico</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">integer</item>
+        <item name="returnType">Atendimento</item>
+      </annotation>
+      <parameter name="idPaciente" type="integer"/>
+    </function>
+    <function name="FindAllCirurgia" return-type="Cirurgia[]">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="SOAPAction">http://tempuri.org/IGestureHealthCareService/FindAllCirurgia</item>
+        <item name="FindAllCirurgia">http://tempuri.org/,FindAllCirurgia</item>
+      </annotation>
+      <annotation name="ValidProperties">
+        <item name="propertySpecifier">_Atendimento,Codigo,DataAgendamento,DataFim,DataInicio,Lado,_Medico,Membro,_Procedimento,_Sala</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="returnType">Cirurgia</item>
+      </annotation>
+    </function>
+    <function name="FindAllAtendimentoWithExame" return-type="Atendimento[]">
+      <annotation name="analyze group">
+        <item name="analyzed">true</item>
+      </annotation>
+      <annotation name="WSDLName">
+        <item name="SOAPAction">http://tempuri.org/IGestureHealthCareService/FindAllAtendimentoWithExame</item>
+        <item name="FindAllAtendimentoWithExame">http://tempuri.org/,FindAllAtendimentoWithExame</item>
+      </annotation>
+      <annotation name="original signature">
+        <item name="inputParams">integer</item>
+        <item name="returnType">Atendimento</item>
+      </annotation>
+      <parameter name="idPaciente" type="integer"/>
+    </function>
+  </service>
+  <entity name="FindAllAtendimentoWithDiagnosticoResponse">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">FindAllAtendimentoWithDiagnosticoResponse</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">GestureHealthCareService</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">br.com.facdombosco.gesturehealthcare.model.vo</item>
+    </annotation>
+  </entity>
+  <entity name="FindAllLaudoResponse">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">FindAllLaudoResponse</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">GestureHealthCareService</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">br.com.facdombosco.gesturehealthcare.model.vo</item>
+    </annotation>
+  </entity>
+  <entity name="SolicitacaoExameItem">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">SolicitacaoExameItem</item>
+    </annotation>
+    <annotation name="WSDLCollectionTypes">
+      <item name="Laudo">http://schemas.datacontract.org/2004/07/Facdombosco.GestureHealthCareWcfLibrary.DataContract,ArrayOfLaudo</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">GestureHealthCareService</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">br.com.facdombosco.gesturehealthcare.model.vo</item>
+    </annotation>
+    <property name="Codigo" type="integer"/>
+    <property name="_Exame" type="Exame"/>
+    <property name="Laudo" type="Laudo[]"/>
+    <property name="QuantidadeRealizada" type="integer"/>
+    <property name="QuantidadeSolicitada" type="integer"/>
+    <property name="_SolicitacaoExame" type="SolicitacaoExame"/>
+  </entity>
+  <entity name="FindAllAtendimentoWithExame">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">FindAllAtendimentoWithExame</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">GestureHealthCareService</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">br.com.facdombosco.gesturehealthcare.model.vo</item>
+    </annotation>
+  </entity>
+  <entity name="Procedimento">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">Procedimento</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">GestureHealthCareService</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">br.com.facdombosco.gesturehealthcare.model.vo</item>
+    </annotation>
+    <property name="Codigo" type="integer"/>
+    <property name="Descricao" type="string"/>
+  </entity>
+  <entity name="FindAllCirurgia">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">FindAllCirurgia</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">GestureHealthCareService</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">br.com.facdombosco.gesturehealthcare.model.vo</item>
+    </annotation>
+  </entity>
+  <entity name="FindAllCirurgiaResponse">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">FindAllCirurgiaResponse</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">GestureHealthCareService</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">br.com.facdombosco.gesturehealthcare.model.vo</item>
+    </annotation>
+  </entity>
+  <entity name="FindAllAtendimentoWithExameResponse">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">FindAllAtendimentoWithExameResponse</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">GestureHealthCareService</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">br.com.facdombosco.gesturehealthcare.model.vo</item>
+    </annotation>
+  </entity>
+  <entity name="FindAllAtendimentoWithProcedimento">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">FindAllAtendimentoWithProcedimento</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">GestureHealthCareService</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">br.com.facdombosco.gesturehealthcare.model.vo</item>
+    </annotation>
+  </entity>
+  <entity name="Atendimento">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">Atendimento</item>
+    </annotation>
+    <annotation name="WSDLCollectionTypes">
+      <item name="Cirurgia">http://schemas.datacontract.org/2004/07/Facdombosco.GestureHealthCareWcfLibrary.DataContract,ArrayOfCirurgia</item>
+      <item name="SolicitacaoExame">http://schemas.datacontract.org/2004/07/Facdombosco.GestureHealthCareWcfLibrary.DataContract,ArrayOfSolicitacaoExame</item>
+      <item name="SolicitacaoProcedimento">http://schemas.datacontract.org/2004/07/Facdombosco.GestureHealthCareWcfLibrary.DataContract,ArrayOfSolicitacaoProcedimento</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">GestureHealthCareService</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">br.com.facdombosco.gesturehealthcare.model.vo</item>
+    </annotation>
+    <annotation name="FindAllAtendimentoWithDiagnostico">
+      <item name="propertySpecifier">Cirurgia,Codigo,Data,_Diagnostico,_Paciente,SolicitacaoExame,SolicitacaoProcedimento,Tipo</item>
+    </annotation>
+    <annotation name="FindAllAtendimentoWithExame">
+      <item name="propertySpecifier">Cirurgia,Codigo,Data,_Diagnostico,_Paciente,SolicitacaoExame,SolicitacaoProcedimento,Tipo</item>
+    </annotation>
+    <annotation name="FindAllAtendimentoWithProcedimento">
+      <item name="propertySpecifier">Cirurgia,Codigo,Data,_Diagnostico,_Paciente,SolicitacaoExame,SolicitacaoProcedimento,Tipo</item>
+    </annotation>
+    <property name="Cirurgia" type="Cirurgia[]"/>
+    <property name="Codigo" type="integer"/>
+    <property name="Data" type="date"/>
+    <property name="_Diagnostico" type="Diagnostico"/>
+    <property name="_Paciente" type="Paciente"/>
+    <property name="SolicitacaoExame" type="SolicitacaoExame[]"/>
+    <property name="SolicitacaoProcedimento" type="SolicitacaoProcedimento[]"/>
+    <property name="Tipo" type="string"/>
+  </entity>
+  <entity name="FindAllAtendimentoWithProcedimentoResponse">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">FindAllAtendimentoWithProcedimentoResponse</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">GestureHealthCareService</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">br.com.facdombosco.gesturehealthcare.model.vo</item>
+    </annotation>
+  </entity>
+  <entity name="SolicitacaoExame">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">SolicitacaoExame</item>
+    </annotation>
+    <annotation name="WSDLCollectionTypes">
+      <item name="SolicitacaoExameItem">http://schemas.datacontract.org/2004/07/Facdombosco.GestureHealthCareWcfLibrary.DataContract,ArrayOfSolicitacaoExameItem</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">GestureHealthCareService</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">br.com.facdombosco.gesturehealthcare.model.vo</item>
+    </annotation>
+    <property name="_Atendimento" type="Atendimento"/>
+    <property name="Codigo" type="integer"/>
+    <property name="Data" type="date"/>
+    <property name="_Medico" type="Medico"/>
+    <property name="SolicitacaoExameItem" type="SolicitacaoExameItem[]"/>
+  </entity>
+  <entity name="Diagnostico">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">Diagnostico</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">GestureHealthCareService</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">br.com.facdombosco.gesturehealthcare.model.vo</item>
+    </annotation>
+    <property name="Codigo" type="integer"/>
+    <property name="Descricao" type="string"/>
+  </entity>
+  <entity name="SolicitacaoProcedimento">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">SolicitacaoProcedimento</item>
+    </annotation>
+    <annotation name="WSDLCollectionTypes">
+      <item name="SolicitacaoProcedimentoItem">http://schemas.datacontract.org/2004/07/Facdombosco.GestureHealthCareWcfLibrary.DataContract,ArrayOfSolicitacaoProcedimentoItem</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">GestureHealthCareService</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">br.com.facdombosco.gesturehealthcare.model.vo</item>
+    </annotation>
+    <property name="_Procedimento" type="Procedimento"/>
+    <property name="_Atendimento" type="Atendimento"/>
+    <property name="Codigo" type="integer"/>
+    <property name="Data" type="date"/>
+    <property name="_Medico" type="Medico"/>
+    <property name="SolicitacaoProcedimentoItem" type="SolicitacaoProcedimentoItem[]"/>
+  </entity>
+  <entity name="FindAllLaudo">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">FindAllLaudo</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">GestureHealthCareService</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">br.com.facdombosco.gesturehealthcare.model.vo</item>
+    </annotation>
+  </entity>
+  <entity name="Medico">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">Medico</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">GestureHealthCareService</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">br.com.facdombosco.gesturehealthcare.model.vo</item>
+    </annotation>
+    <property name="Codigo" type="integer"/>
+    <property name="CondigoConselho" type="string"/>
+    <property name="Conselho" type="string"/>
+    <property name="Nome" type="string"/>
+  </entity>
+  <entity name="Cirurgia">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">Cirurgia</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">GestureHealthCareService</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">br.com.facdombosco.gesturehealthcare.model.vo</item>
+    </annotation>
+    <annotation name="FindAllCirurgia">
+      <item name="propertySpecifier">_Atendimento,Codigo,DataAgendamento,DataFim,DataInicio,Lado,_Medico,Membro,_Procedimento,_Sala</item>
+    </annotation>
+    <property name="_Paciente" type="Paciente"/>
+    <property name="_Atendimento" type="Atendimento"/>
+    <property name="Codigo" type="integer"/>
+    <property name="DataAgendamento" type="date"/>
+    <property name="DataFim" type="date"/>
+    <property name="DataInicio" type="date"/>
+    <property name="Lado" type="string"/>
+    <property name="_Medico" type="Medico"/>
+    <property name="Membro" type="string"/>
+    <property name="_Procedimento" type="Procedimento"/>
+    <property name="_Sala" type="Sala"/>
+  </entity>
+  <entity name="FindAllAtendimentoWithDiagnostico">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">FindAllAtendimentoWithDiagnostico</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">GestureHealthCareService</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">br.com.facdombosco.gesturehealthcare.model.vo</item>
+    </annotation>
+  </entity>
+  <entity name="Exame">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">Exame</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">GestureHealthCareService</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">br.com.facdombosco.gesturehealthcare.model.vo</item>
+    </annotation>
+    <property name="Codigo" type="integer"/>
+    <property name="Descricao" type="string"/>
+  </entity>
+  <entity name="Laudo">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">Laudo</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">GestureHealthCareService</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">br.com.facdombosco.gesturehealthcare.model.vo</item>
+    </annotation>
+    <annotation name="FindAllLaudo">
+      <item name="propertySpecifier">Arquivo,Codigo,_SolicitacaoExameItem</item>
+    </annotation>
+    <property name="Arquivo" type="string"/>
+    <property name="Codigo" type="integer"/>
+    <property name="_SolicitacaoExameItem" type="SolicitacaoExameItem"/>
+  </entity>
+  <entity name="SolicitacaoProcedimentoItem">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">SolicitacaoProcedimentoItem</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">GestureHealthCareService</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">br.com.facdombosco.gesturehealthcare.model.vo</item>
+    </annotation>
+    <property name="Codigo" type="integer"/>
+    <property name="_Procedimento" type="Procedimento"/>
+    <property name="_SolicitacaoProcedimento" type="SolicitacaoProcedimento"/>
+  </entity>
+  <entity name="Paciente">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">Paciente</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">GestureHealthCareService</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">br.com.facdombosco.gesturehealthcare.model.vo</item>
+    </annotation>
+    <annotation name="WSDLCollectionTypes">
+      <item name="Cirurgia">http://schemas.datacontract.org/2004/07/Facdombosco.GestureHealthCareWcfLibrary.DataContract,ArrayOfCirurgia</item>
+      <item name="Atendimento">http://schemas.datacontract.org/2004/07/Facdombosco.GestureHealthCareWcfLibrary.DataContract,ArrayOfAtendimento</item>
+    </annotation>
+    <annotation name="PesquisarPaciente">
+      <item name="propertySpecifier">Cirurgia,Codigo,DataNascimento,Nome,Sexo</item>
+    </annotation>
+    <property name="Cirurgia" type="Cirurgia[]"/>
+    <property name="Atendimento" type="Atendimento[]"/>
+    <property name="Codigo" type="integer"/>
+    <property name="DataNascimento" type="date"/>
+    <property name="Foto" type="blob"/>
+    <property name="IdadeAtual" type="string"/>
+    <property name="Nome" type="string"/>
+    <property name="Sexo" type="string"/>
+  </entity>
+  <entity name="Sala">
+    <annotation name="EntityProperties">
+      <item name="EntityOriginalName">Sala</item>
+    </annotation>
+    <annotation name="service Group">
+      <item name="service">GestureHealthCareService</item>
+    </annotation>
+    <annotation name="ServerProperties">
+      <item name="IncludeRemoteClass">nonempty</item>
+    </annotation>
+    <annotation name="ActionScriptGeneration">
+      <item name="Package">br.com.facdombosco.gesturehealthcare.model.vo</item>
+    </annotation>
+    <property name="Codigo" type="integer"/>
+    <property name="Descricao" type="string"/>
+  </entity>
+</model>

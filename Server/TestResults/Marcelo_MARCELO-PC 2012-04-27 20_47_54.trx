@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<TestRun id="2675c88b-ade4-4ffb-b346-9465cb615f56" name="Marcelo@MARCELO-PC 2012-04-27 20:47:54" runUser="Marcelo-PC\Marcelo" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <TestSettings name="Local" id="ea4e1211-71d7-4fa9-b280-730e8334b944">
+    <Description>These are default test settings for a local test run.</Description>
+    <Deployment enabled="false" runDeploymentRoot="Marcelo_MARCELO-PC 2012-04-27 20_47_54">
+      <DeploymentItem filename="K:\Faculdade\TCC A\Kinect - Server\CommonBin\antlr.runtime.dll" />
+      <DeploymentItem filename="K:\Faculdade\TCC A\Kinect - Server\CommonBin\Castle.ActiveRecord.dll" />
+      <DeploymentItem filename="K:\Faculdade\TCC A\Kinect - Server\CommonBin\Castle.Components.Validator.dll" />
+      <DeploymentItem filename="K:\Faculdade\TCC A\Kinect - Server\CommonBin\log4net.dll" />
+      <DeploymentItem filename="K:\Faculdade\TCC A\Kinect - Server\CommonBin\Castle.Core.dll" />
+      <DeploymentItem filename="K:\Faculdade\TCC A\Kinect - Server\CommonBin\NHibernate.dll" />
+      <DeploymentItem filename="K:\Faculdade\TCC A\Kinect - Server\CommonBin\Iesi.Collections.dll" />
+      <DeploymentItem filename="K:\Faculdade\TCC A\Kinect - Server\CommonBin\Antlr3.Runtime.dll" />
+      <DeploymentItem filename="K:\Faculdade\TCC A\Kinect - Server\GestureHealthCare\bin\Debug\Facdombosco.GestureHealthCare.dll" />
+      <DeploymentItem filename="K:\Faculdade\TCC A\Kinect - Server\CommonBin\NHibernate.ByteCode.Castle.dll" />
+      <DeploymentItem filename="K:\Faculdade\TCC A\Kinect - Server\CommonBin\AutoMapper.dll" />
+    </Deployment>
+    <Execution>
+      <TestTypeSpecific />
+      <AgentRule name="Execution Agents">
+      </AgentRule>
+    </Execution>
+  </TestSettings>
+  <Times creation="2012-04-27T20:47:54.5966796-03:00" queuing="2012-04-27T20:47:55.4560546-03:00" start="2012-04-27T20:47:55.5673828-03:00" finish="2012-04-27T20:48:07.0078125-03:00" />
+  <ResultSummary outcome="Completed">
+    <Counters total="1" executed="1" passed="1" error="0" failed="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+  </ResultSummary>
+  <TestDefinitions>
+    <UnitTest name="FindAllAtendimentoWithExame" storage="k:\faculdade\tcc a\kinect - server\gesturehealthcaretests\bin\debug\gesturehealthcaretests.dll" id="bcb5eb2a-b32c-fa1f-8e07-502161e89985">
+      <Execution id="c13a4d16-c801-4d8a-8f86-b7e8ccf7b576" />
+      <TestMethod codeBase="K:/Faculdade/TCC A/Kinect - Server/GestureHealthCareTests/bin/Debug/GestureHealthCareTests.DLL" adapterTypeName="Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestAdapter, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.Adapter, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" className="GestureHealthCareTests.LaudoServiceTest, GestureHealthCareTests, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" name="FindAllAtendimentoWithExame" />
+    </UnitTest>
+  </TestDefinitions>
+  <TestLists>
+    <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+    <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
+  </TestLists>
+  <TestEntries>
+    <TestEntry testId="bcb5eb2a-b32c-fa1f-8e07-502161e89985" executionId="c13a4d16-c801-4d8a-8f86-b7e8ccf7b576" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
+  </TestEntries>
+  <Results>
+    <UnitTestResult executionId="c13a4d16-c801-4d8a-8f86-b7e8ccf7b576" testId="bcb5eb2a-b32c-fa1f-8e07-502161e89985" testName="FindAllAtendimentoWithExame" computerName="MARCELO-PC" duration="00:00:05.9808432" startTime="2012-04-27T20:47:55.7626953-03:00" endTime="2012-04-27T20:48:05.2158203-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c13a4d16-c801-4d8a-8f86-b7e8ccf7b576">
+    </UnitTestResult>
+  </Results>
+</TestRun>

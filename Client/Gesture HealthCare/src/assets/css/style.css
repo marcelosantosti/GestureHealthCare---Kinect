@@ -1,0 +1,54 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+
+s|ViewNavigatorApplication
+{
+	background-image: 			Embed(source="assets/blue-and-white-background-blue-white-background-1600x1200.jpg");
+}
+
+s|View
+{
+	background-image: 			Embed(source="assets/blue-and-white-background-blue-white-background-1600x1200.jpg");
+}
+
+.Imagem
+{
+	background-image: 			Embed(source="assets/sl_twitter_bg.jpg");
+}
+
+.Transparente
+{
+	backgroundAlpha: 0.0;
+}
+
+s|BorderContainer 
+{
+	/*	backgroundColor: #bfbfbf;
+	borderColor: #bfbfbf; */
+	borderAlpha:1; 
+	cornerRadius:5; 
+	borderWeight:1;
+	/*color: #FFFFFF;*/
+} 
+
+s|Button
+{
+	chromeColor: #467688;
+}
+
+s|List
+{
+	fontSize: 12;
+/*	color: #000000;*/
+/*	contentBackgroundColor: #FFFFFF;*/
+	contentBackgroundAlpha: 0;
+	borderVisible: false;	
+}
+
+s|ActionBar 
+{
+	chromeColor: #467688;
+	titleAlign: center;
+	defaultButtonAppearance: beveled;
+}

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 xmlns:components="br.com.facdombosco.gesturehealthcare.view.components.*" 
+		 xmlns:panzoom="com.adobe.wheelerstreet.fig.panzoom.*"
+		 width="100%" 
+		 height="100%"
+		 title="Gesture HealthCare">
+	
+	<fx:Declarations>
+		
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import br.com.facdombosco.gesturehealthcare.event.GestureEvent;
+			import br.com.facdombosco.gesturehealthcare.model.gestures.GestureType;
+			import br.com.facdombosco.gesturehealthcare.model.presentation.IHomeViewPresentationModel;
+			import br.com.facdombosco.gesturehealthcare.model.presentation.impl.HomeViewPresentationModel;
+			
+			import mx.graphics.ImageSnapshot;
+			
+			[Inject(source="homeViewPresentationModel")]
+			[Bindable]
+			public var homeViewPresentationModel : HomeViewPresentationModel;
+			
+			[PostConstruct]
+			public function postConstruct() : void
+			{
+				this.homeViewPresentationModel.setarSuperViewNavigator(this.navigator);
+				this.homeViewPresentationModel.iniciarKinect();
+			}
+			
+			protected function label1_clickHandler(event:MouseEvent):void
+			{
+				var gestureEvent : br.com.facdombosco.gesturehealthcare.event.GestureEvent = new br.com.facdombosco.gesturehealthcare.event.GestureEvent(br.com.facdombosco.gesturehealthcare.event.GestureEvent.GESTURE_RECOGNISED);
+				gestureEvent.gestureType = GestureType.POINT_RIGTH;
+				homeViewPresentationModel.dispatcher.dispatchEvent(gestureEvent);
+			}
+			
+			protected function btnFullScreen_clickHandler(event:MouseEvent):void
+			{
+				if (stage.displayState == StageDisplayState.NORMAL)
+					stage.displayState = StageDisplayState.FULL_SCREEN;
+				else
+				{
+					if (stage.displayState == StageDisplayState.FULL_SCREEN)
+						stage.displayState = StageDisplayState.NORMAL;
+				}
+			}
+		]]>
+	</fx:Script>
+	
+	<s:actionContent>
+		<s:HGroup gap="5">
+			<s:Button id="btnFullScreen" label="Fullscreen" click="btnFullScreen_clickHandler(event)" />
+			<s:Button id="btnSair" label="Sair" click="{this.homeViewPresentationModel.sair()}" />
+		</s:HGroup>
+	</s:actionContent>
+	
+	<s:BorderContainer width="100%" height="100%" backgroundImage="@Embed('assets/sl_twitter_bg.jpg')" borderVisible="false">
+		
+		<s:layout>
+			<s:VerticalLayout paddingTop="20" paddingLeft="20" paddingRight="20" paddingBottom="20">
+				
+			</s:VerticalLayout>
+		</s:layout>
+		
+		<s:HGroup width="100%" height="20%">
+			<s:Spacer width="100%"/>
+			<s:VGroup width="100%" height="20%">
+				<components:KinectVideoComponent />
+			</s:VGroup>
+		</s:HGroup>
+		
+		<s:VGroup width="100%" height="60%" horizontalAlign="center" verticalAlign="middle">
+			
+			<s:Label fontSize="40" text="APONTE PARA TELA PARA INICIAR" click="label1_clickHandler(event)" />
+			
+		</s:VGroup>
+		
+		<s:Spacer height="10%" />
+		
+		<!--<components:GestureViewerComponent width="100%" height="20%">
+			
+		</components:GestureViewerComponent>-->
+		
+	</s:BorderContainer>
+	
+</s:View>

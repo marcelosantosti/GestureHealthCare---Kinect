@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				xmlns:s="library://ns.adobe.com/flex/spark" 
+				xmlns:mx="library://ns.adobe.com/flex/mx" 
+				autoDrawBackground="false">
+	<fx:Script>
+		<![CDATA[
+			import br.com.facdombosco.gesturehealthcare.model.util.DateUtil;
+			import br.com.facdombosco.gesturehealthcare.model.vo.SolicitacaoExame;
+			
+			private function retornarTamanhoLetraPequena() : int
+			{
+				return (Capabilities.screenResolutionY < 900) ? 15 : 30;
+			}
+		]]>
+	</fx:Script>
+	
+	<s:layout>
+		<s:VerticalLayout paddingBottom="10" paddingLeft="10" paddingRight="10" paddingTop="10" />
+	</s:layout>
+
+	<s:BorderContainer width="100%">
+		<s:layout>
+			<s:VerticalLayout paddingBottom="10" paddingLeft="10" paddingRight="10" paddingTop="10" />
+		</s:layout>
+		
+		<s:Label text="{DateUtil.format((data as SolicitacaoExame).Data)}" fontSize="{retornarTamanhoLetraPequena()}"/>
+		
+		<s:List width="100%" dataProvider="{(data as SolicitacaoExame).SolicitacaoExameItem}" itemRenderer="br.com.facdombosco.gesturehealthcare.view.itemrenderers.SolicitacaoExameItemItemRenderer">
+			<s:layout>
+				<s:VerticalLayout gap="0"
+								  variableRowHeight="true"
+								  horizontalAlign="justify"  />
+			</s:layout>
+		</s:List>
+		
+	</s:BorderContainer>
+	
+</s:ItemRenderer>
